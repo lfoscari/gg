@@ -1,1 +1,1 @@
-Personal website, made with eleventy.
+https://lfoscari.github.io/gg/
