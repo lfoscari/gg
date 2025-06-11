@@ -9,16 +9,53 @@ description: Culpa dicta ad repellat et. Vitae excepturi fuga perferendis alias.
 		{% include "_includes/head.njk" %}
 	</head>
 
-	<body class="bg-black text-white h-full w-full">
-		<div class="h-full w-full flex justify-center items-center gap-5">
-			<h1 class="font-semibold">gg</h1>
+	<body class="prose bg-black text-white h-full w-full flex items-center">
+		<div class="container grid grid-cols-[1fr,2fr] gap-10 m-auto">
+			<div class="flex flex-col items-center">
+				<img class="rounded-full w-40" src="https://placehold.co/400x400">
+				<h1 class="">Luigi Foscari</h1>
+				<h2 class="">PhD student</h2>
+				<h3 class="">University of Milan — LAILA</h3>
+				<a href="#">Download CV</a>
+			</div>
+			<div class="grid">
+				<h3>About me</h3>
+				<p>Id soluta doloribus ad. Sunt quisquam ratione at qui qui ut. Voluptatem et enim atque quod velit id quidem. Temporibus at ipsa omnis deserunt officiis. Et sint non sapiente voluptas dolorem. Enim est aut ipsum.</p>
+				<p>Ipsum nesciunt quas rerum non harum qui veniam non. Occaecati dolorem omnis illo nihil odit tempora nihil. Doloremque ut sit et blanditiis facilis incidunt ratione ut. Velit deserunt quasi ut eaque quis ut ullam.</p>
+				<p>Est tempore fugiat accusamus. Autem et rerum magni et aut. Ipsum distinctio et sit et vitae. Expedita et fugiat magni voluptatem eum consectetur sunt.</p>
 
-			<ul>
-				<li>
-					<a href="{{ '/turtle' | url }}" class="hover:text-slate-500 transition">turtle</a>
-				</li>
-			</ul>
+				<div class="grid grid-cols-2">
+					<div>
+						<h4>Interests</h4>
+						<ul>
+							<li>Game theory</li>
+							<li>Game theory</li>
+							<li>Game theory</li>
+							<li>Game theory</li>
+							<li>Game theory</li>
+						</ul>
+					</div>
+					<div>
+						<h4>Education</h4>
+						<ul>
+							<li>Bachelor</li>
+							<li>Master</li>
+							<li>PhD</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
+			
+		{# <div class="h-full w-full flex justify-center items-center gap-5"> #}
+			{# <h1 class="font-semibold">gg</h1> #}
+
+			{# <ul> #}
+				{# <li> #}
+					{# <a href="{{ '/turtle' | url }}" class="hover:text-slate-500 transition">turtle</a> #}
+				{# </li> #}
+			{# </ul> #}
+		{# </div> #}
 
 		{% include "_includes/footer.njk" %}
 	</body>

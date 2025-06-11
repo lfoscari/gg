@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "eleventy --serve & npx tailwindcss -i styles/tailwind.css -c styles/tailwind.config.js -o _site/css/style.css --watch",
-    "build": "ELEVENTY_PRODUCTION=true eleventy --pathprefix 'gg' && NODE_ENV=production npx tailwindcss -i styles/tailwind.css -c styles/tailwind.config.js -o _site/css/style.css --minify"
+    "start": "eleventy --serve & npx @tailwindcss/cli -i styles/tailwind.css -o _site/css/style.css --watch",
+    "build": "ELEVENTY_PRODUCTION=true eleventy --pathprefix 'gg' && NODE_ENV=production npx @tailwindcss/cli -i styles/tailwind.css -o _site/css/style.css --minify"
   },
   "keywords": [],
-  "author": "",
+  "author": "Luigi Foscari",
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^1.0.0",
+    "@tailwindcss/typography": "^0.5.16",
     "alpinejs": "^3.9.5",
     "tailwindcss": "^3.0.23"
   }
