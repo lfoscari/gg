@@ -1,6 +1,6 @@
 ---
-title: home
-description: Culpa dicta ad repellat et. Vitae excepturi fuga perferendis alias.
+title: Luigi Foscari
+description: 
 ---
 
 <!DOCTYPE html>
@@ -9,54 +9,68 @@ description: Culpa dicta ad repellat et. Vitae excepturi fuga perferendis alias.
 		{% include "_includes/head.njk" %}
 	</head>
 
-	<body class="prose bg-black text-white h-full w-full flex items-center">
-		<div class="container grid grid-cols-[1fr,2fr] gap-10 m-auto">
-			<div class="flex flex-col items-center">
-				<img class="rounded-full w-40" src="https://placehold.co/400x400">
-				<h1 class="">Luigi Foscari</h1>
-				<h2 class="">PhD student</h2>
-				<h3 class="">University of Milan — LAILA</h3>
-				<a href="#">Download CV</a>
-			</div>
-			<div class="grid">
-				<h3>About me</h3>
-				<p>Id soluta doloribus ad. Sunt quisquam ratione at qui qui ut. Voluptatem et enim atque quod velit id quidem. Temporibus at ipsa omnis deserunt officiis. Et sint non sapiente voluptas dolorem. Enim est aut ipsum.</p>
-				<p>Ipsum nesciunt quas rerum non harum qui veniam non. Occaecati dolorem omnis illo nihil odit tempora nihil. Doloremque ut sit et blanditiis facilis incidunt ratione ut. Velit deserunt quasi ut eaque quis ut ullam.</p>
-				<p>Est tempore fugiat accusamus. Autem et rerum magni et aut. Ipsum distinctio et sit et vitae. Expedita et fugiat magni voluptatem eum consectetur sunt.</p>
+	<body class="prose prose-stone dark:prose-invert dark:bg-black prose-a:text-accent prose-strong:text-accent prose-a:text-accent-invert prose-strong:text-accent-invert max-w-none p-5 min-h-full w-full flex justify-around items-center flex-col">
+		<div class="max-w-full w-4xl mx-auto">
+			<div class="grid md:grid-cols-[1fr_2fr] gap-10">
+				<div class="flex flex-col items-center text-center">
+					<img class="rounded-full w-40 grayscale-25" src="{{ '../assets/profile-pic.jpeg' | url }}">
+					<h1 class="mb-0">Luigi Foscari</h1>
+					<h4 class="text-accent dark:text-accent-invert font-mono mt-3 mb-5">luigi.foscari [at] unimi.it</h4>
+					<h3>PhD student @<a href="https://sites.google.com/view/lailaunimi" target="_blank">LAILA</a><br>
+					Università degli studi di Milano</h3>
+					{# <a href="#">Download CV</a> #}
+				</div>
+				<div class="flex flex-col justify-center">
+					<div>
+						<h3>About me</h3>
+						<p>Since 2024, I am a PhD student at <a href="https://www.unimi.it/it" target="_blank">Università statale degli studi di Milano</a> (Italy) under the supervision of professor <a href="https://cesa-bianchi.di.unimi.it/" target="_blank">Nicolò Cesa-Bianchi</a> in the <a href="https://sites.google.com/view/lailaunimi" target="_blank">LAILA</a> group. I am set to complete my PhD at the end of 2026.</p>
 
-				<div class="grid grid-cols-2">
-					<div>
-						<h4>Interests</h4>
-						<ul>
-							<li>Game theory</li>
-							<li>Game theory</li>
-							<li>Game theory</li>
-							<li>Game theory</li>
-							<li>Game theory</li>
-						</ul>
-					</div>
-					<div>
-						<h4>Education</h4>
-						<ul>
-							<li>Bachelor</li>
-							<li>Master</li>
-							<li>PhD</li>
-						</ul>
+						<span class="border px-2 my-1 inline-block rounded whitespace-nowrap">Online learning</span>
+						<span class="border px-2 my-1 inline-block rounded whitespace-nowrap">Bandits</span>
+						<span class="border px-2 my-1 inline-block rounded whitespace-nowrap">Games</span>
+						<span class="border px-2 my-1 inline-block rounded whitespace-nowrap">Finance</span>
 					</div>
 				</div>
 			</div>
+
+			<hr>
+
+			<div class="grid md:grid-cols-2 gap-10">
+				<div>
+					<h3>Research</h3>
+					<p>My work focuses on online learning and game theory, with a focus on bandits. So far I have mainly studied applications to financial models under the lens of sequential decision making and algorithmic collusion.</p>
+					<a href="https://scholar.google.com/citations?user=tIBk2zEAAAAJ&hl=it" target="_blank">Google scholar</a>
+					<h3>Published papers</h3>
+					<ul class="list-[lower-greek]">
+						<li><a href="https://arxiv.org/abs/2411.13993">Market Making without Regret</a> COLT 2025<br><span class="opacity-70">by N. Cesa-Bianchi, T. Cesari, R. Colomboni, L. Foscari and V. Pathak</span></li>
+					</ul>
+				</div>
+				<div>
+					<h4>Teaching assistance</h4>
+					<ul class="list-[lower-greek]">
+						<li>Statistical methods for machine learning<br><span class="opacity-70">for MSc students, University of Milan, 2025</span></li>
+						<li>Reinforcement learning<br><span class="opacity-70">for MSc students, University of Milan, 2025</span></li>
+					</ul>
+					<h4>Events</h4>
+					<ul class="list-[lower-greek]">
+						<li>39th COnference on Learning Theory<br><span><a href="https://learningtheory.org/colt2025/" target="_blank">COLT 2025</a></span></li>
+						<li>36th Algorithmic Learning Theory<br><span><a href="https://algorithmiclearningtheory.org/alt2025/" target="_blank">ALT 2025</a></span></li>
+						<li>Multi-agent reinforcement learning<br><span><a href="https://sites.google.com/view/marl-school2024/home?authuser=0" target="_blank">EPFL-ETHZ Summer school 2024</a></span></li>
+					</ul>
+				</div>
+			</div>
+
+			<hr>
+
+			<div>
+				<h3>News</h3>
+				<ul class="list-[lower-greek]">
+					<li><u>June 2025</u> Just finished following <a href="https://chavdarova.github.io/">Tatjana Chavdarova</a>'s amazing course on <a href="https://chavdarova.github.io/gml23.html">Games in Machine Learning</a>.</li>
+					<li><u>May 2025</u> Our paper <a href="https://arxiv.org/abs/2411.13993">Market Making without Regret</a> got accepted to COLT!</li>
+				</ul>
+			</div>	
 		</div>
 			
-		{# <div class="h-full w-full flex justify-center items-center gap-5"> #}
-			{# <h1 class="font-semibold">gg</h1> #}
-
-			{# <ul> #}
-				{# <li> #}
-					{# <a href="{{ '/turtle' | url }}" class="hover:text-slate-500 transition">turtle</a> #}
-				{# </li> #}
-			{# </ul> #}
-		{# </div> #}
-
 		{% include "_includes/footer.njk" %}
 	</body>
 </html>

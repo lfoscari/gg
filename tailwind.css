@@ -1,6 +1,25 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@font-face {
+    font-family: Inter;
+    src: local('Inter Regular'), local('Inter-Regular'),
+        url('assets/Inter-Regular.woff2') format('woff2'),
+        url('assets/Inter-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@theme {
+	--color-accent: var(--color-rose-900);
+	--color-accent-invert: var(--color-rose-500);
+}
+
+@utility container {
+	margin-inline: auto;
+}
+
 .hide-scrollbar {
 	-ms-overflow-style: none;
 	scrollbar-width: none;
@@ -8,4 +27,4 @@
 
 .hide-scrollbar::-webkit-scrollbar {
 	display: none;
-  }
+}
