@@ -12,8 +12,7 @@
 }
 
 @theme {
-	--color-accent: var(--color-rose-900);
-	--color-accent-invert: var(--color-rose-500);
+	--color-accent: var(--color-rose-500);
 }
 
 @utility container {
