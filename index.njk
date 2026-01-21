@@ -22,13 +22,21 @@ description:
 				</div>
 				<div class="flex flex-col justify-center">
 					<div>
-						<h3>🦉 About me</h3>
+						<div class="flex justify-between">
+							<h3 class="mt-0">🦉 About me</h3>
+							<div>
+								<a href="https://scholar.google.com/citations?user=tIBk2zEAAAAJ&hl=it" class="inline-block w-10 px-2 my-1" target="_blank">{% include "assets/social/scholar.svg" %}</a>
+								{# <a href="https://bsky.app/profile/luigi-foscari.bsky.social" class="inline-block w-10 px-2 my-1" target="_blank">{% include "assets/social/bluesky.svg" %}</a> #}
+								<a href="https://linkedin.com/in/luigifoscari" class="inline-block w-10 px-2 my-1" target="_blank">{% include "assets/social/linkedin.svg" %}</a>
+							</div>
+						</div>
 						<p>Since 2024, I am a PhD student at <a href="https://www.unimi.it/it" target="_blank">Università statale degli studi di Milano</a> (Italy) under the supervision of professor <a href="https://cesa-bianchi.di.unimi.it/" target="_blank">Nicolò Cesa-Bianchi</a> in the <a href="https://sites.google.com/view/lailaunimi" target="_blank">LAILA</a> group. I am set to complete my PhD at the end of 2026.</p>
 
 						<span class="border px-2 my-1 inline-block rounded whitespace-nowrap">Online learning</span>
 						<span class="border px-2 my-1 inline-block rounded whitespace-nowrap">Bandits</span>
 						<span class="border px-2 my-1 inline-block rounded whitespace-nowrap">Games</span>
 						<span class="border px-2 my-1 inline-block rounded whitespace-nowrap">Finance</span>
+
 					</div>
 				</div>
 			</div>
@@ -39,7 +47,6 @@ description:
 				<div>
 					<h3>Research</h3>
 					<p>My work centers on online learning and game theory, with a specialization in bandit problems. I apply these concepts to financial models, including auctions, pricing, and market making, by analyzing sequential decision making and algorithmic collusion.</p>
-					<a href="https://scholar.google.com/citations?user=tIBk2zEAAAAJ&hl=it" target="_blank">Google scholar</a>
 					<h3>Papers</h3>
 					<ul class="list-[lower-greek]">
 						<li>
