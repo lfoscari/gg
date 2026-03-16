@@ -1,12 +1,62 @@
+{% set metaTitle = seoTitle or title or site.name %}
+{% set metaDescription = description or site.description %}
+{% set metaImagePath = ogImage or site.defaultImage %}
+{% set canonicalPath = page.url or '/' %}
+{% set canonicalUrl = site.url + canonicalPath %}
+{% set metaImageUrl = site.url + (metaImagePath | url) %}
+
 <meta charset="UTF-8"/>
 
-<title>{{ title }}</title>
-<meta name="description" content="{{ description }}"/>
+<title>{{ metaTitle }}</title>
+<meta name="description" content="{{ metaDescription }}"/>
+<meta name="author" content="{{ site.author }}"/>
+<meta name="robots" content="{{ robots or 'index,follow,max-image-preview:large' }}"/>
 
 <meta http-equiv="x-ua-compatible" content="ie=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"/>
+<link rel="canonical" href="{{ canonicalUrl }}"/>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦉</text></svg>">
 
+<meta property="og:site_name" content="{{ site.name }}"/>
+<meta property="og:type" content="{{ ogType or 'website' }}"/>
+<meta property="og:title" content="{{ metaTitle }}"/>
+<meta property="og:description" content="{{ metaDescription }}"/>
+<meta property="og:url" content="{{ canonicalUrl }}"/>
+<meta property="og:image" content="{{ metaImageUrl }}"/>
+<meta property="og:locale" content="{{ site.locale }}"/>
+
+<meta name="twitter:card" content="{{ twitterCard or 'summary_large_image' }}"/>
+<meta name="twitter:title" content="{{ metaTitle }}"/>
+<meta name="twitter:description" content="{{ metaDescription }}"/>
+<meta name="twitter:image" content="{{ metaImageUrl }}"/>
+
 <link rel="stylesheet" href="{{ '/css/style.css' | url }}"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{{ schemaType or 'WebPage' }}",
+  "name": {{ metaTitle | dump | safe }},
+  "description": {{ metaDescription | dump | safe }},
+  "url": {{ canonicalUrl | dump | safe }}{% if schemaType == 'ProfilePage' %},
+  "mainEntity": {
+    "@type": "Person",
+    "name": {{ site.person.name | dump | safe }},
+    "url": {{ site.url | dump | safe }},
+    "image": {{ metaImageUrl | dump | safe }},
+    "email": {{ site.person.email | dump | safe }},
+    "jobTitle": {{ site.person.jobTitle | dump | safe }},
+    "affiliation": {
+      "@type": "CollegeOrUniversity",
+      "name": {{ site.person.affiliation.name | dump | safe }},
+      "url": {{ site.person.affiliation.url | dump | safe }}
+    },
+    "sameAs": [
+      {{ site.person.sameAs[0] | dump | safe }},
+      {{ site.person.sameAs[1] | dump | safe }}
+    ]
+  }{% endif %}
+}
+</script>
 
 {% block head %}{% endblock %}

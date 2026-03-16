@@ -1,0 +1,21 @@
+{
+  "name": "Luigi Foscari",
+  "author": "Luigi Foscari",
+  "url": "https://lfoscari.github.io/gg",
+  "locale": "en_US",
+  "description": "PhD student at the University of Milan working on online learning, bandits, game theory and financial applications such as auctions, pricing and market making.",
+  "defaultImage": "/assets/profile-pic.jpeg",
+  "person": {
+    "name": "Luigi Foscari",
+    "email": "luigi.foscari@unimi.it",
+    "jobTitle": "PhD Student",
+    "affiliation": {
+      "name": "University of Milan",
+      "url": "https://www.unimi.it/it"
+    },
+    "sameAs": [
+      "https://scholar.google.com/citations?user=tIBk2zEAAAAJ&hl=it",
+      "https://linkedin.com/in/luigifoscari"
+    ]
+  }
+}
