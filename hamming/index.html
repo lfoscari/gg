@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en" class="w-full h-full">
+	<head>
+
+
+
+
+
+
+<meta charset="UTF-8"/>
+
+<title>Hamming game | Luigi Foscari</title>
+<meta name="description" content="The hamming game is very simple, start by choosing any 5-letter word, then change any character obtaining another valid word, you are not allowed to repeat words. The game ends when you cannot find a new word."/>
+<meta name="author" content="Luigi Foscari"/>
+<meta name="robots" content="index,follow,max-image-preview:large"/>
+
+<meta http-equiv="x-ua-compatible" content="ie=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"/>
+<link rel="canonical" href="https://lfoscari.github.io/gg/hamming/"/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦉</text></svg>">
+
+<meta property="og:site_name" content="Luigi Foscari"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Hamming game | Luigi Foscari"/>
+<meta property="og:description" content="The hamming game is very simple, start by choosing any 5-letter word, then change any character obtaining another valid word, you are not allowed to repeat words. The game ends when you cannot find a new word."/>
+<meta property="og:url" content="https://lfoscari.github.io/gg/hamming/"/>
+<meta property="og:image" content="https://lfoscari.github.io/gg/gg/assets/profile-pic.jpeg"/>
+<meta property="og:locale" content="en_US"/>
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Hamming game | Luigi Foscari"/>
+<meta name="twitter:description" content="The hamming game is very simple, start by choosing any 5-letter word, then change any character obtaining another valid word, you are not allowed to repeat words. The game ends when you cannot find a new word."/>
+<meta name="twitter:image" content="https://lfoscari.github.io/gg/gg/assets/profile-pic.jpeg"/>
+
+<link rel="stylesheet" href="/gg/css/style.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "Hamming game | Luigi Foscari",
+  "description": "The hamming game is very simple, start by choosing any 5-letter word, then change any character obtaining another valid word, you are not allowed to repeat words. The game ends when you cannot find a new word.",
+  "url": "https://lfoscari.github.io/gg/hamming/"
+}
+</script>
+
+
+</head>
+
+	<body
+	    class="bg-black text-white h-full w-full"
+        x-data="dictionary"
+        x-init=")"
+	>
+
+	    <input
+			type="text" name="start" maxlength="5"
+			x-model="word"
+			x-init="$watch('word', play)"
+		>
+
+		<!--<ul>
+		    <template x-for="word in dictionary">
+				<li x-text="word"></li>
+			</template>
+		</ul>-->
+
+		
+
+	</body>
+
+	<script>
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('dropdown', () => ({
+          word: '',
+          dictionary: [],
+
+          init() {
+            this.dictionary = await loadDictionary()
+          },
+
+          async loadDictionary() {
+            return await fetch('../assets/hamming/wordle.txt')
+              .then(response => response.text())
+              .then(text => text.split("\n"));
+          },
+
+          function isValid() {
+            if (this.word.length != 5) return false;
+            if (! /^[a-zA-Z]+$/.test(this.word)) return false;
+            return true;
+          },
+
+          function play() {
+            if (!isValid(this.word)) return;
+            console.log(this.word, "is valid");
+          },
+        }))
+      })
+
+	</script>
+
+    <script src="//unpkg.com/alpinejs" defer></script>
+
+</html>
