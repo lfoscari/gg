@@ -1,0 +1,124 @@
+---
+title: Hamming game
+seoTitle: Hamming game | Luigi Foscari
+description: The hamming game is very simple, start by choosing any 5-letter word, then change any character obtaining another valid word, you are not allowed to repeat words. The game ends when you cannot find a new word.
+ogType: article
+schemaType: CreativeWork
+---
+
+<!DOCTYPE html>
+<html lang="en" class="w-full h-full">
+	<head>{% include "_includes/head.njk" %}</head>
+
+	<body
+	    class="bg-black font-mono text-white h-full w-full"
+		x-data="hamming"
+	>
+
+	    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 text-center pb-20">
+
+    	    <input
+    			class="border text-center text-pink-300 caret-pink-500 border-none outline-0 outline-pink-500 border-solid"
+    			autofocus type="text" name="start" maxlength="5"
+    			x-model="word"
+    		>
+
+    		<ul class="mt-5">
+    		    <template x-for="word in history">
+    				<li x-text="word" class="m-5"></li>
+    			</template>
+    		</ul>
+
+    		<!--<ul>
+    		    <template x-for="word in dictionary">
+    				<li x-text="word"></li>
+    			</template>
+    		</ul>-->
+
+		</div>
+
+        <div class="fixed bottom-0 left-0 w-screen h-50 bg-linear-to-t from-black to-transparent"></div>
+
+		{% include "_includes/footer.njk" %}
+	</body>
+
+	<script>
+      document.addEventListener("alpine:init", () => {
+        Alpine.data("hamming", () => ({
+          word: '',
+          dictionary: [],
+          history: [
+            "aback",
+            "abase",
+            "abate",
+            "abbey",
+            "abbot",
+            "abhor",
+            "abide",
+            "abled",
+            "abode",
+            "abort",
+          ],
+
+          init() {
+            this.dictionary = this.loadDictionary();
+            this.$watch("word", () => this.play());
+          },
+
+          loadDictionary() {
+            return fetch("../assets/hamming/wordle.txt")
+              .then(response => response.text())
+              .then(text => text.split("\n"));
+          },
+
+          isWord(w) {
+            if (w.length != 5) return false;
+            if (! /^[a-zA-Z]+$/.test(w)) return false;
+            return true;
+          },
+
+          isNextWord(w) {
+            if (this.history.length == 0) return true;
+            const previousWord = this.history[this.history.length - 1];
+            return this.distance(w, previousWord) == 1;
+          },
+
+          exists(w) {
+            return this.dictionary.includes(w);
+          },
+
+          distance(a, b) {
+            if (a.length !== b.length) {
+              throw new Error("Hamming distance requires strings of equal length");
+            }
+
+            return [...a].filter((char, i) => char !== b[i]).length;
+          },
+
+          play() {
+            if (! this.isWord(this.word)) {
+              console.log("Enter a 5-letter word using only letters.");
+              return;
+            }
+
+            // if (! this.isNextWord(this.word)) {
+            //   console.log("Change exactly one letter from the previous word.");
+            //   return;
+            // }
+
+            // if (! this.exists(this.word)) {
+            //   console.log("That word is not in the dictionary.");
+            //   return;
+            // }
+
+            this.history.push(this.word);
+            this.word = "";
+          },
+        }))
+      })
+
+	</script>
+
+    <script src="//unpkg.com/alpinejs" defer></script>
+
+</html>
