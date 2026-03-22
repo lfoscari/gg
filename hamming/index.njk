@@ -1,7 +1,7 @@
 ---
 title: Hamming game
 seoTitle: Hamming game | Luigi Foscari
-description: The hamming game is very simple, start by choosing any 5-letter word, then change any character obtaining another valid word, you are not allowed to repeat words. The game ends when you cannot find a new word.
+description: The hamming game is very simple, start by choosing any 5-letter word, then change any character obtaining another valid word, you are not allowed to repeat words. The game ends when you cannot find a new word. What's the longest sequence you can make?
 ogType: article
 schemaType: CreativeWork
 ---
@@ -11,20 +11,21 @@ schemaType: CreativeWork
 	<head>{% include "_includes/head.njk" %}</head>
 
 	<body
-	    class="bg-black font-mono text-white h-full w-full"
+	    class="font-[Xanh] lowercase bg-black text-white h-full w-full text-[20px]"
 		x-data="hamming"
 	>
 
-	    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 text-center pb-20">
+	    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 text-center pb-20 w-full">
 
     	    <input
-    			class="border text-center text-pink-300 caret-pink-500 border-none outline-0 outline-pink-500 border-solid"
+    			class="w-full lowercase text-center text-pink-400 caret-transparent border-none outline-0 tracking-widest"
+                placeholder="Write a 5-letter word"
     			autofocus type="text" name="start" maxlength="5"
-    			x-model="word"
+    			id="input" x-model="word"
     		>
 
-    		<ul class="mt-5">
-    		    <template x-for="word in history">
+    		<ul class="mt-10 opacity-50">
+    		    <template x-for="word in history.reverse()">
     				<li x-text="word" class="m-5"></li>
     			</template>
     		</ul>
@@ -37,6 +38,11 @@ schemaType: CreativeWork
 
 		</div>
 
+		<div x-data class="fixed top-0 left-0 p-10 w-full opacity-50 flex justify-between flex-wrap">
+            <p id="error"></p>
+            <p>Candidates: <span id="info" x-text="dictionary.length"></span></p>
+        </div>
+
         <div class="fixed bottom-0 left-0 w-screen h-50 bg-linear-to-t from-black to-transparent"></div>
 
 		{% include "_includes/footer.njk" %}
@@ -47,28 +53,24 @@ schemaType: CreativeWork
         Alpine.data("hamming", () => ({
           word: '',
           dictionary: [],
-          history: [
-            "aback",
-            "abase",
-            "abate",
-            "abbey",
-            "abbot",
-            "abhor",
-            "abide",
-            "abled",
-            "abode",
-            "abort",
-          ],
+          history: [],
 
-          init() {
-            this.dictionary = this.loadDictionary();
+          input: document.getElementById("input"),
+          error: document.getElementById("error"),
+          info: document.getElementById("info"),
+
+          async init() {
+            this.dictionary = await await this.loadDictionary();
             this.$watch("word", () => this.play());
           },
 
           loadDictionary() {
-            return fetch("../assets/hamming/wordle.txt")
+            return fetch("../assets/hamming/words.txt")
               .then(response => response.text())
-              .then(text => text.split("\n"));
+              .then(text => text
+                  .split("\n")
+                  .filter(w => w.length == 5)
+              );
           },
 
           isWord(w) {
@@ -77,42 +79,72 @@ schemaType: CreativeWork
             return true;
           },
 
-          isNextWord(w) {
-            if (this.history.length == 0) return true;
-            const previousWord = this.history[this.history.length - 1];
-            return this.distance(w, previousWord) == 1;
-          },
-
-          exists(w) {
+          isKnown(w) {
             return this.dictionary.includes(w);
           },
 
-          distance(a, b) {
+          isRepeated(w) {
+            return this.history.includes(w);
+          },
+
+          hasDistanceOne(w) {
+            if (this.history.length == 0) return true;
+            const previousWord = this.history[0];
+            return this.distance(w, previousWord) == 1;
+          },
+
+          validWords(w) {
+            return [...this.dictionary].filter(v =>
+              this.distance(w, v) == 1 && !this.history.includes(v)
+            );
+          },
+
+          distance(a, b) { // Hamming distance
             if (a.length !== b.length) {
-              throw new Error("Hamming distance requires strings of equal length");
+              throw new Error(`Hamming distance requires strings of equal length, comparing \"${a}\" and \"${b}\".`);
             }
 
             return [...a].filter((char, i) => char !== b[i]).length;
           },
 
+          lost() {
+            input.placeholder = `You lost... (score: ${this.history.length})`;
+            input.disabled = true;
+          },
+
           play() {
             if (! this.isWord(this.word)) {
-              console.log("Enter a 5-letter word using only letters.");
+              error.innerText = "";
               return;
             }
 
-            // if (! this.isNextWord(this.word)) {
-            //   console.log("Change exactly one letter from the previous word.");
-            //   return;
-            // }
+            if (! this.isKnown(this.word)) {
+              error.innerText = "I don't know this word...";
+              return;
+            }
 
-            // if (! this.exists(this.word)) {
-            //   console.log("That word is not in the dictionary.");
-            //   return;
-            // }
+            if (this.isRepeated(this.word)) {
+              error.innerText = "No duplicates!";
+              return;
+            }
+
+            if (! this.hasDistanceOne(this.word)) {
+              error.innerText = "Change exactly one letter from the previous word.";
+              console.log(this.word, this.history[0], this.distance(this.word, this.history[0]))
+              return;
+            }
+
+            // Update number of info
+            const candidates = this.validWords(this.word);
+            console.log(`Cheating uh? Candidates: [${candidates}]`);
+            info.innerText = candidates.length;
 
             this.history.push(this.word);
             this.word = "";
+
+            if (candidates.length == 0) {
+              this.lost();
+            }
           },
         }))
       })

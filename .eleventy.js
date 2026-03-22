@@ -1,9 +1,8 @@
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addWatchTarget('./styles/tailwind.config.js')
-  eleventyConfig.addWatchTarget('./styles/tailwind.css')
+  // eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
 
   eleventyConfig.addPassthroughCopy({
-    './node_modules/alpinejs/dist/cdn.js': './js/alpine.js',
-    './assets': './assets'
-  })
+    "./node_modules/alpinejs/dist/cdn.js": "./js/alpine.js",
+    "./assets": "./assets",
+  });
 };

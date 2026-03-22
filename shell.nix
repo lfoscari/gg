@@ -7,6 +7,6 @@ pkgs.mkShell {
         git
     ];
     shellHook = ''
-        echo "Run 'npm install' and 'npm start' to serve the website"
+        echo "Run 'npm install' and 'npm run serve' to serve the website"
       '';
 }
