@@ -11,20 +11,20 @@ schemaType: CreativeWork
 	<head>{% include "_includes/head.njk" %}</head>
 
 	<body
-	    class="font-[Xanh] lowercase bg-black text-white h-full w-full text-[20px]"
+	    class="sixtyfour-secondary lowercase bg-black text-white h-full w-full text-[20px]"
 		x-data="hamming"
 	>
 
 	    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 text-center pb-20 w-full">
 
     	    <input
-    			class="w-full lowercase text-center text-pink-400 caret-transparent border-none outline-0 tracking-widest"
+    			class="sixtyfour-primary w-full lowercase text-center text-pink-400 caret-transparent border-none outline-0 tracking-widest"
                 placeholder="Write a 5-letter word"
     			autofocus type="text" name="start" maxlength="5"
     			id="input" x-model="word"
     		>
 
-    		<ul class="mt-10 opacity-50">
+    		<ul class="mt-10">
     		    <template x-for="word in history.reverse()">
     				<li x-text="word" class="m-5"></li>
     			</template>
@@ -38,7 +38,7 @@ schemaType: CreativeWork
 
 		</div>
 
-		<div x-data class="fixed top-0 left-0 p-10 w-full opacity-50 flex justify-between flex-wrap">
+		<div x-data class="fixed top-0 left-0 p-10 w-full flex justify-between flex-wrap">
             <p id="error"></p>
             <p>Candidates: <span id="info" x-text="dictionary.length"></span></p>
         </div>

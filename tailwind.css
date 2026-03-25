@@ -6,7 +6,7 @@
     font-family: Inter;
     src:
         local("Inter:style=Regular"),
-        url("../assets/Inter-Regular.woff") format("woff");
+        url("../assets/fonts/Inter-Regular.woff") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -16,20 +16,44 @@
     font-family: Inter;
     src:
         local("Inter:style=Bold"),
-        url("../assets/Inter-Bold.woff") format("woff");
+        url("../assets/fonts/Inter-Bold.woff") format("woff");
     font-weight: bold;
     font-style: normal;
     font-display: swap;
 }
 
-@font-face {
+/*@font-face {
     font-family: Xanh;
     src:
         local("Xanh Mono:style=Regular"),
-        url("../assets/XanhMono-Regular.woff") format("woff");
+        url("../assets/fonts/XanhMono-Regular.woff") format("woff");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
+}*/
+
+@font-face {
+    font-family: Sixtyfour;
+    src:
+        local("Sixtyfour:style=Regular"),
+        url("../assets/fonts/Sixtyfour-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.sixtyfour-primary {
+    font-family: "Sixtyfour", monospace;
+    font-variation-settings:
+        "BLED" 50,
+        "SCAN" -20;
+}
+
+.sixtyfour-secondary {
+    font-family: "Sixtyfour", monospace;
+    font-variation-settings:
+        "BLED" 30,
+        "SCAN" -50;
 }
 
 @theme {
