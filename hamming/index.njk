@@ -120,6 +120,11 @@ schemaType: CreativeWork
               return;
             }
 
+            if (this.word.toLowerCase() === "mario") {
+              error.innerText = "Try the other one...";
+              return;
+            }
+
             if (this.word.toLowerCase() === "luigi") {
               error.innerText = "Try opening the console :)";
               console.log("In the console you can find suggestions if you are stuck ;)");
