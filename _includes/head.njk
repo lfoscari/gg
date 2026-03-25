@@ -3,7 +3,7 @@
 {% set metaImagePath = ogImage or site.defaultImage %}
 {% set canonicalPath = page.url or '/' %}
 {% set canonicalUrl = site.url + canonicalPath %}
-{% set metaImageUrl = site.url + (metaImagePath | url) %}
+{% set metaImageUrl = site.url + metaImagePath %}
 
 <meta charset="UTF-8"/>
 
