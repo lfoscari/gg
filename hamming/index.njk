@@ -11,14 +11,14 @@ schemaType: CreativeWork
 	<head>{% include "_includes/head.njk" %}</head>
 
 	<body
-	    class="sixtyfour-secondary lowercase bg-black text-white h-full w-full text-[20px]"
+	    class="font-[Doto] text-[25px] lowercase bg-black text-white h-full w-full"
 		x-data="hamming"
 	>
 
 	    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 text-center pb-20 w-full">
 
     	    <input
-    			class="sixtyfour-primary w-full lowercase text-center text-pink-400 caret-transparent border-none outline-0 tracking-widest"
+    			class="w-full lowercase text-center text-pink-400 caret-transparent border-none outline-0 tracking-widest"
                 placeholder="Write a 5-letter word"
     			autofocus type="text" name="start" maxlength="5"
     			id="input" x-model="word"
@@ -39,8 +39,8 @@ schemaType: CreativeWork
 		</div>
 
 		<div x-data class="fixed top-0 left-0 p-10 w-full flex justify-between flex-wrap">
-            <p id="error"></p>
             <p>Candidates: <span id="info" x-text="dictionary.length"></span></p>
+            <p id="error"></p>
         </div>
 
         <div class="fixed bottom-0 left-0 w-screen h-50 bg-linear-to-t from-black to-transparent"></div>
@@ -118,6 +118,12 @@ schemaType: CreativeWork
               return;
             }
 
+            if (this.word.toLowerCase() === "luigi") {
+              error.innerText = "Try opening the console :)";
+              console.log("In the console you can find suggestions if you are stuck ;)");
+              return;
+            }
+
             if (! this.isKnown(this.word)) {
               error.innerText = "I don't know this word...";
               return;
@@ -134,9 +140,9 @@ schemaType: CreativeWork
               return;
             }
 
-            // Update number of info
+            // Update number of candidates
             const candidates = this.validWords(this.word);
-            console.log(`Cheating uh? Candidates: [${candidates}]`);
+            console.log(`Candidates:\n + ${candidates.join('\n + ')}`);
             info.innerText = candidates.length;
 
             this.history.push(this.word);
