@@ -33,7 +33,7 @@
 <meta name="twitter:description" content="The hamming game is very simple, start by choosing any 5-letter word, then change any character obtaining another valid word, you are not allowed to repeat words. The game ends when you cannot find a new word. What&#39;s the longest sequence you can make?"/>
 <meta name="twitter:image" content="https://lfoscari.github.io/gg/gg/assets/profile-pic.jpeg"/>
 
-<link rel="stylesheet" href="/gg/css/style.css"/>
+<link rel="stylesheet" href="/gg/assets/css/style.css"/>
 
 <script type="application/ld+json">
 {
@@ -49,7 +49,7 @@
 </head>
 
 	<body
-	    class="font-[Xanh] lowercase bg-black text-white h-full w-full text-[20px]"
+	    class="font-[Doto] text-[25px] lowercase bg-black text-white h-full w-full"
 		x-data="hamming"
 	>
 
@@ -62,7 +62,7 @@
     			id="input" x-model="word"
     		>
 
-    		<ul class="mt-10 opacity-50">
+    		<ul class="mt-10">
     		    <template x-for="word in history.reverse()">
     				<li x-text="word" class="m-5"></li>
     			</template>
@@ -76,9 +76,9 @@
 
 		</div>
 
-		<div x-data class="fixed top-0 left-0 p-10 w-full opacity-50 flex justify-between flex-wrap">
-            <p id="error"></p>
+		<div x-data class="fixed top-0 left-0 p-10 w-full flex justify-between flex-wrap">
             <p>Candidates: <span id="info" x-text="dictionary.length"></span></p>
+            <p id="error"></p>
         </div>
 
         <div class="fixed bottom-0 left-0 w-screen h-50 bg-linear-to-t from-black to-transparent"></div>
@@ -157,6 +157,12 @@
               return;
             }
 
+            if (this.word.toLowerCase() === "luigi") {
+              error.innerText = "Try opening the console :)";
+              console.log("In the console you can find suggestions if you are stuck ;)");
+              return;
+            }
+
             if (! this.isKnown(this.word)) {
               error.innerText = "I don't know this word...";
               return;
@@ -173,9 +179,9 @@
               return;
             }
 
-            // Update number of info
+            // Update number of candidates
             const candidates = this.validWords(this.word);
-            console.log(`Cheating uh? Candidates: [${candidates}]`);
+            console.log(`Candidates:\n + ${candidates.join('\n + ')}`);
             info.innerText = candidates.length;
 
             this.history.push(this.word);
