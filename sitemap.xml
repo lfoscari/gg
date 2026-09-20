@@ -6,17 +6,17 @@
     xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
     <url>
         <loc>https://lfoscari.github.io/gg/hamming/</loc>
-        <lastmod>2026-06-19T14:10:38.594Z</lastmod>
+        <lastmod>2026-09-20T13:12:52.399Z</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>https://lfoscari.github.io/gg/</loc>
-        <lastmod>2026-06-19T14:10:38.594Z</lastmod>
+        <lastmod>2026-09-20T13:12:52.399Z</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>https://lfoscari.github.io/gg/turtle/</loc>
-        <lastmod>2026-06-19T14:10:38.595Z</lastmod>
+        <lastmod>2026-09-20T13:12:52.400Z</lastmod>
         <changefreq>monthly</changefreq>
     </url>
 </urlset>
